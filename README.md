@@ -1,9 +1,9 @@
-# Property Manager Lite 🏢
+# BRICK. Property Manager 🏢
 
 **Designed by [@AlxanderArt](https://github.com/AlxanderArt)**
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://property-manager-lite.vercel.app)
-[![Frontend](https://img.shields.io/badge/frontend-Vercel-black)](https://property-manager-lite.vercel.app)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://bricks-property-manager.vercel.app)
+[![Frontend](https://img.shields.io/badge/frontend-Vercel-black)](https://bricks-property-manager.vercel.app)
 [![Backend](https://img.shields.io/badge/backend-Render-purple)](https://property-management-ux-ui-project.onrender.com)
 
 A modern, full-stack property management system designed for small portfolio owners and landlords. Features JWT authentication, real-time analytics, and a beautiful responsive UI.
@@ -14,11 +14,11 @@ A modern, full-stack property management system designed for small portfolio own
 
 | Service | URL | Status |
 |---------|-----|--------|
-| **Frontend** | [property-manager-lite.vercel.app](https://property-manager-lite.vercel.app) | 🟢 Live |
+| **Frontend** | [bricks-property-manager.vercel.app](https://bricks-property-manager.vercel.app) | 🟢 Live |
 | **Backend API** | [property-management-ux-ui-project.onrender.com](https://property-management-ux-ui-project.onrender.com) | 🟢 Live |
 
 ### Try It Now
-1. Visit the [Live Demo](https://property-manager-lite.vercel.app)
+1. Visit the [Live Demo](https://bricks-property-manager.vercel.app)
 2. Click **"Create Account"** to register
 3. Log in and start managing properties!
 
@@ -84,7 +84,7 @@ Monitor payments, track pending amounts, and view transaction history.
 ## 📂 Project Structure
 
 ```text
-property-manager-lite/
+brick-property-manager/
 ├── App.tsx                 # Main React entry with auth & routing
 ├── pages/
 │   ├── Login.tsx          # Authentication UI
