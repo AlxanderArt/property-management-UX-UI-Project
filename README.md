@@ -2,12 +2,27 @@
 
 **Designed by [@AlxanderArt](https://github.com/AlxanderArt)**
 
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://property-manager-lite.vercel.app)
+[![Frontend](https://img.shields.io/badge/frontend-Vercel-black)](https://property-manager-lite.vercel.app)
+[![Backend](https://img.shields.io/badge/backend-Render-purple)](https://property-management-ux-ui-project.onrender.com)
+
 A modern, full-stack property management system designed for small portfolio owners and landlords. Features JWT authentication, real-time analytics, and a beautiful responsive UI.
 
-## 🚀 Live Demo
+## 🚀 Live Demo — **Deployed & Working!**
 
-- **Frontend:** [https://property-management-ux-ui.vercel.app](https://property-management-ux-ui.vercel.app)
-- **Backend API:** [https://property-manager-api.onrender.com](https://property-manager-api.onrender.com)
+> ✅ **This application is fully deployed and functional!**
+
+| Service | URL | Status |
+|---------|-----|--------|
+| **Frontend** | [property-manager-lite.vercel.app](https://property-manager-lite.vercel.app) | 🟢 Live |
+| **Backend API** | [property-management-ux-ui-project.onrender.com](https://property-management-ux-ui-project.onrender.com) | 🟢 Live |
+
+### Try It Now
+1. Visit the [Live Demo](https://property-manager-lite.vercel.app)
+2. Click **"Create Account"** to register
+3. Log in and start managing properties!
+
+> **Note:** Free tier backend may take ~30 seconds to wake up on first request after inactivity.
 
 ## 📸 Screenshots
 
