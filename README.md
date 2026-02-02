@@ -26,6 +26,10 @@ A modern, full-stack property management system designed for small portfolio own
 
 ## 📸 Screenshots
 
+### Login
+Secure authentication with a beautiful dark-themed interface.
+![Login](./docs/screenshots/login.png)
+
 ### Dashboard
 Analytics overview with revenue trends, occupancy rates, and key metrics.
 ![Dashboard](./docs/screenshots/dashboard.png)
