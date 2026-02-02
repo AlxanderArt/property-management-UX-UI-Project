@@ -1,6 +1,6 @@
 # Property Manager Lite 🏢
 
-**Created by Maxwell Willis ([@AlxanderArt](https://github.com/AlxanderArt))**
+**Designed by [@AlxanderArt](https://github.com/AlxanderArt)**
 
 A modern, full-stack property management system designed for small portfolio owners and landlords. Features JWT authentication, real-time analytics, and a beautiful responsive UI.
 
@@ -219,4 +219,4 @@ MIT License - feel free to use this project for learning or as a starting point 
 
 ---
 
-**Built with React, Flask, and lots of coffee by Maxwell Willis**
+**Built with React, Flask, and lots of coffee by AlxanderArt**

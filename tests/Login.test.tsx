@@ -57,6 +57,6 @@ describe('Login Component', () => {
 
   it('displays author credit', () => {
     render(<Login onLogin={mockOnLogin} />);
-    expect(screen.getByText('Created by Maxwell Willis')).toBeInTheDocument();
+    expect(screen.getByText('Designed by AlxanderArt')).toBeInTheDocument();
   });
 });

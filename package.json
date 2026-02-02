@@ -2,7 +2,7 @@
   "name": "property-manager-lite",
   "private": true,
   "version": "1.0.0",
-  "author": "Maxwell Willis <alxanderart@github.com>",
+  "author": "AlxanderArt <alxanderart@users.noreply.github.com>",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -126,7 +126,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         </div>
 
         <p className="text-center text-slate-500 text-sm mt-6">
-          Created by Maxwell Willis
+          Designed by AlxanderArt
         </p>
       </div>
     </div>
