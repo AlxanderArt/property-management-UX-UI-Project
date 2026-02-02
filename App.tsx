@@ -1,28 +1,29 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Properties from './pages/Properties';
 import Tenants from './pages/Tenants';
 import Payments from './pages/Payments';
-import { mockApi } from './services/mockApi';
+import Login from './pages/Login';
+import { api } from './services/api';
+import { authService } from './services/auth';
 import { Property, Tenant, Payment, DashboardStats, PropertyStatus } from './types';
 
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(authService.isAuthenticated());
   const [activeTab, setActiveTab] = useState('dashboard');
   const [properties, setProperties] = useState<Property[]>([]);
   const [tenants, setTenants] = useState<Tenant[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load data
   const fetchData = async () => {
     setIsLoading(true);
     try {
       const [props, tens, pays] = await Promise.all([
-        mockApi.getProperties(),
-        mockApi.getTenants(),
-        mockApi.getPayments()
+        api.getProperties(),
+        api.getTenants(),
+        api.getPayments()
       ]);
       setProperties(props);
       setTenants(tens);
@@ -35,10 +36,11 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (isAuthenticated) {
+      fetchData();
+    }
+  }, [isAuthenticated]);
 
-  // Compute stats for dashboard
   const stats: DashboardStats = useMemo(() => {
     const totalProperties = properties.length;
     const occupiedProperties = properties.filter(p => p.status === PropertyStatus.OCCUPIED).length;
@@ -57,33 +59,44 @@ const App: React.FC = () => {
     };
   }, [properties, payments]);
 
-  // Handlers
   const handleAddProperty = async (p: Omit<Property, 'id'>) => {
-    await mockApi.createProperty(p);
+    await api.createProperty(p);
     fetchData();
   };
 
   const handleDeleteProperty = async (id: string) => {
     if (confirm("Are you sure? This will delete the property record.")) {
-      await mockApi.deleteProperty(id);
+      await api.deleteProperty(id);
       fetchData();
     }
   };
 
   const handleUpdateProperty = async (id: string, updates: Partial<Property>) => {
-    await mockApi.updateProperty(id, updates);
+    await api.updateProperty(id, updates);
     fetchData();
   };
 
   const handleAddTenant = async (t: Omit<Tenant, 'id'>) => {
-    await mockApi.createTenant(t);
+    await api.createTenant(t);
     fetchData();
   };
 
   const handleAddPayment = async (p: Omit<Payment, 'id'>) => {
-    await mockApi.createPayment(p);
+    await api.createPayment(p);
     fetchData();
   };
+
+  const handleLogout = () => {
+    authService.logout();
+    setIsAuthenticated(false);
+    setProperties([]);
+    setTenants([]);
+    setPayments([]);
+  };
+
+  if (!isAuthenticated) {
+    return <Login onLogin={() => setIsAuthenticated(true)} />;
+  }
 
   if (isLoading) {
     return (
@@ -97,14 +110,14 @@ const App: React.FC = () => {
   }
 
   return (
-    <Layout activeTab={activeTab} setActiveTab={setActiveTab}>
+    <Layout activeTab={activeTab} setActiveTab={setActiveTab} onLogout={handleLogout}>
       {activeTab === 'dashboard' && <Dashboard stats={stats} />}
       {activeTab === 'properties' && (
-        <Properties 
-          properties={properties} 
-          onAdd={handleAddProperty} 
-          onDelete={handleDeleteProperty} 
-          onUpdate={handleUpdateProperty} 
+        <Properties
+          properties={properties}
+          onAdd={handleAddProperty}
+          onDelete={handleDeleteProperty}
+          onUpdate={handleUpdateProperty}
         />
       )}
       {activeTab === 'tenants' && (

@@ -1,14 +1,17 @@
 
 import React, { useState } from 'react';
+import { authService } from '../services/auth';
 
 interface LayoutProps {
   children: React.ReactNode;
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  onLogout: () => void;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) => {
+const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab, onLogout }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const user = authService.getUser();
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: 'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z' },
@@ -57,19 +60,27 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
         </nav>
 
         <div className="mt-auto pt-8 border-t border-slate-800">
-          <div className="flex items-center gap-4 p-2 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group">
+          <div className="flex items-center gap-4 p-2 rounded-2xl bg-white/5 mb-3">
             <div className="relative">
-              <img src="https://i.pravatar.cc/150?u=admin" className="w-11 h-11 rounded-xl object-cover ring-2 ring-indigo-500/30" />
+              <div className="w-11 h-11 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">
+                {user?.name?.charAt(0).toUpperCase() || 'U'}
+              </div>
               <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-[#0F172A]"></div>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-bold truncate">James Kent</p>
-              <p className="text-[10px] text-indigo-400 font-semibold uppercase tracking-wider">Premium Admin</p>
+              <p className="text-sm font-bold truncate">{user?.name || 'User'}</p>
+              <p className="text-[10px] text-indigo-400 font-semibold uppercase tracking-wider truncate">{user?.email}</p>
             </div>
-            <svg className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-            </svg>
           </div>
+          <button
+            onClick={onLogout}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors text-sm font-medium"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Sign Out
+          </button>
         </div>
       </aside>
 
@@ -116,6 +127,25 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
                   <span>{item.label}</span>
                 </button>
               ))}
+              <div className="border-t border-slate-700 my-2"></div>
+              <div className="flex items-center gap-3 px-5 py-3 text-slate-400">
+                <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                  {user?.name?.charAt(0).toUpperCase() || 'U'}
+                </div>
+                <span className="text-sm">{user?.name || 'User'}</span>
+              </div>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onLogout();
+                }}
+                className="flex items-center gap-4 px-5 py-4 rounded-xl text-red-400 hover:bg-red-500/10"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Sign Out</span>
+              </button>
             </nav>
           </div>
         )}
